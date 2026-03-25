@@ -1,6 +1,7 @@
 plugins {
     kotlin("jvm") version "2.3.20"
     id("org.jlleitschuh.gradle.ktlint") version "14.2.0"
+    jacoco
 }
 
 group = "io.github.poerl"
@@ -22,4 +23,11 @@ kotlin {
 
 tasks.test {
     useJUnitPlatform()
+}
+
+tasks.jacocoTestReport {
+    dependsOn(tasks.test)
+    reports {
+        xml.required.set(true)
+    }
 }

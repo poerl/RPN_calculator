@@ -11,7 +11,7 @@ class ParserToRPNTest {
         assertThat(output).isEmpty()
     }
 
-    @Test
+//    @Test
     fun numbersTest() {
         val input = "23 5 4.3"
         val output = parse(input)

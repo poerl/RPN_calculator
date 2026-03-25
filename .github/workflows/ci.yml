@@ -76,6 +76,7 @@ jobs:
           
       - name: Test report
         uses: dorny/test-reporter@v3
+        if: ${{ !cancelled() }}
         with:
           name: Tests
           path: build/test-results/test/TEST-*.xml

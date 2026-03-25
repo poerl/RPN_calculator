@@ -2,7 +2,7 @@ plugins {
     kotlin("jvm") version "2.3.20"
     id("org.jlleitschuh.gradle.ktlint") version "14.2.0"
     id("org.jetbrains.kotlinx.kover") version "0.9.8"
-    jacoco
+    application
 }
 
 group = "io.github.poerl"
@@ -22,10 +22,18 @@ kotlin {
     jvmToolchain(25)
 }
 
+tasks.withType<JavaExec> {
+    standardInput = System.`in`
+}
+
 tasks.test {
     useJUnitPlatform()
 }
 
-tasks.jacocoTestReport {
+tasks.koverHtmlReport {
     dependsOn(tasks.test)
+}
+
+application {
+    mainClass = "io.github.poerl.MainKt"
 }

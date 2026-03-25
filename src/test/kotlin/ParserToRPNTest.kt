@@ -2,6 +2,7 @@ import io.github.poerl.parseToRPN
 import io.github.poerl.parseTokens
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
 
 class ParserToRPNTest {
     @Test
@@ -60,5 +61,11 @@ class ParserToRPNTest {
         val expectedOutput = mutableListOf("2", "3.5", "+")
 
         assertThat(output).isEqualTo(expectedOutput)
+    }
+
+    @Test
+    fun incorrectInput() {
+        val input = parseTokens("2(3()")
+        assertThrows<IllegalArgumentException>({ parseToRPN(input) })
     }
 }

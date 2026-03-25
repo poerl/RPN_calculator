@@ -45,7 +45,7 @@ fun parseToRPN(tokens: List<String>): List<String> {
             }
         }
     }
-    if (openBrackets > 0) throw IllegalArgumentException("Open brackets must be positive.")
+    if (openBrackets != 0) throw IllegalArgumentException("Open brackets must be positive.")
 
     for (i in stack) {
         output.add(i.value)

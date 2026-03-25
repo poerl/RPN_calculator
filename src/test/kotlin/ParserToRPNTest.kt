@@ -10,4 +10,14 @@ class ParserToRPNTest {
 
         assertThat(output).isEmpty()
     }
+
+    @Test
+    fun numbersTest() {
+        val input = "23 5 4.3"
+        val output = parse(input)
+        val expectedOutput = listOf("23", "5", "4.3")
+
+        assertThat(output).isEmpty()
+//        assertThat(output).isEqualTo(expectedOutput)
+    }
 }

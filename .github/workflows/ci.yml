@@ -82,6 +82,9 @@ jobs:
           path: build/test-results/test/TEST-*.xml
           reporter: java-junit
 
+      - name: Generate JaCoCo
+        run: ./gradlew jacocoTestReport
+
       - name: JaCoCo report
         uses: PavanMudigonda/jacoco-reporter@v5.1
         with:

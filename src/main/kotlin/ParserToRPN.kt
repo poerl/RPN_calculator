@@ -7,7 +7,7 @@ fun parse(input: String): List<String> {
 
     val parsed = parserRegex.findAll(input)
 
-    for(token in parsed) {
+    for (token in parsed) {
         output.add(token.value)
     }
     return output

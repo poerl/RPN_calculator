@@ -9,39 +9,45 @@ fun parseToRPN(tokens: List<String>): List<String> {
     var poppedOperation: Operations
     var openBrackets = 0
 
-    for(token in tokens) {
+    for (token in tokens) {
         operation = Operations.entries.find { it.value == token }
         if (operation == null) {
             output.add(token)
             continue
         }
 
-        if(stack.isEmpty()) {
+        if (stack.isEmpty()) {
             stack.push(operation)
             continue
         }
 
-        while(stack.isNotEmpty() && operation.level <= stack.peek().level) {
+        while (stack.isNotEmpty() && operation.level <= stack.peek().level) {
             poppedOperation = stack.pop()
             if (poppedOperation == Operations.OPEN_BRACKET) {
-                openBrackets --
+                openBrackets--
                 break
-            }
-            else {
+            } else {
                 output.add(poppedOperation.value)
             }
         }
 
         when (operation) {
-            Operations.OPEN_BRACKET -> {stack.push(operation); openBrackets++ }
-            Operations.CLOSE_BRACKET -> {if (openBrackets > 0) throw IllegalArgumentException("Open brackets must be positive.")}
-            else -> {stack.push(operation)}
+            Operations.OPEN_BRACKET -> {
+                stack.push(operation)
+                openBrackets++
+            }
+            Operations.CLOSE_BRACKET ->
+                {
+                    if (openBrackets > 0) throw IllegalArgumentException("Open brackets must be positive.")
+                }
+            else -> {
+                stack.push(operation)
+            }
         }
-
     }
     if (openBrackets > 0) throw IllegalArgumentException("Open brackets must be positive.")
 
-    for (i in stack){
+    for (i in stack) {
         output.add(i.value)
     }
 

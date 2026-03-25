@@ -4,7 +4,6 @@ import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
 class ParserToRPNTest {
-
     @Test
     fun emptyInput() {
         val input = mutableListOf<String>()
@@ -40,14 +39,26 @@ class ParserToRPNTest {
         assertThat(output).isEqualTo(expectedOutput)
     }
 
+    @Suppress
     @Test
     fun allLevelsInput() {
         val input = parseTokens("2+3*5^4*(2+3)+4^(3+5)")
         val output = parseToRPN(input)
-        val expectedOutput = mutableListOf("2", "3", "5", "4", "^", "*", "2", "3", "+", "*",
-            "+", "4", "3", "5", "+", "^", "+")
+        val expectedOutput =
+            mutableListOf(
+                "2", "3", "5", "4", "^", "*", "2", "3", "+", "*",
+                "+", "4", "3", "5", "+", "^", "+",
+            )
 
         assertThat(output).isEqualTo(expectedOutput)
     }
 
+    @Test
+    fun floatValuesInput() {
+        val input = parseTokens("2+3.5")
+        val output = parseToRPN(input)
+        val expectedOutput = mutableListOf("2", "3.5", "+")
+
+        assertThat(output).isEqualTo(expectedOutput)
+    }
 }

@@ -81,8 +81,3 @@ jobs:
           name: Tests
           path: build/test-results/test/TEST-*.xml
           reporter: java-junit
-
-      - name: JaCoCo report
-        uses: PavanMudigonda/jacoco-reporter@v5.1
-        with:
-          coverage_results_path: build/reports/jacoco/test/jacocoTestReport.xml

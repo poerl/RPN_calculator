@@ -25,7 +25,7 @@ fun parseToRPN(tokens: List<String>): List<String> {
             poppedOperation = stack.pop()
             if (poppedOperation == Operations.OPEN_BRACKET) {
                 openBrackets--
-//                break
+                break
             } else {
                 output.add(poppedOperation.value)
             }
